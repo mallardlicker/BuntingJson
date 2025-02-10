@@ -4,6 +4,16 @@
 
 namespace Bunting {
 	
+	// std::istream& getInput() {
+		
+	// 	return input;
+	// }
+	
+	// void setInput(std::istream& i) {
+		
+	// 	input = i;
+	// }
+	
 	Token Lexer::getNextToken() {
 		skipWhitespace();
 		if (input.eof()) return {TokenType::END_OF_FILE, ""};
@@ -20,7 +30,7 @@ namespace Bunting {
 			case 't': case 'f': case 'n': return parseLiteral();
 			case '-': case '0': case '1': case '2': case '3': case '4': 
 			case '5': case '6': case '7': case '8': case '9': return parseNumber();
-			default:  return {TokenType::ERROR, errorText("Unexpected character")};
+			default:  return {TokenType::ERROR, errorText("unexpected character")};
 		}
 	}
 	
@@ -74,7 +84,7 @@ namespace Bunting {
 						
 						break;
 					default:
-						return {TokenType::ERROR, errorText("Invalid escape sequence")};
+						return {TokenType::ERROR, errorText("invalid escape sequence")};
 				}
 			}
 			else {
@@ -91,7 +101,7 @@ namespace Bunting {
 		}
 		else {
 			
-			return {TokenType::ERROR, errorText("Unterminated string")};
+			return {TokenType::ERROR, errorText("unterminated string")};
 		}
 	}
 	
@@ -117,7 +127,7 @@ namespace Bunting {
 			
 			if (input.eof() || currentChar != terms[index][i]) {
 				
-				return {TokenType::ERROR, errorText("Failed to parse literal")};
+				return {TokenType::ERROR, errorText("failed to parse literal")};
 			}
 			else {
 				
@@ -137,20 +147,20 @@ namespace Bunting {
 		currentChar = input.get();
 	}
 	
-	char Lexer::peekChar() {
+	// char Lexer::peekChar() {
 		
-		return input.peek();
-	}
+	// 	return input.peek();
+	// }
 	
 	std::string Lexer::tokenTypeStr(TokenType tt) {
 		
 		switch (tt) {
-			case TokenType::BEGIN_OBJECT:		return "{";
-			case TokenType::END_OBJECT:			return "}";
-			case TokenType::BEGIN_ARRAY:		return "[";
-			case TokenType::END_ARRAY:			return "]";
-			case TokenType::NAME_SEPARATOR:		return ":";
-			case TokenType::VALUE_SEPARATOR:	return ",";
+			case TokenType::BEGIN_OBJECT:		return "BEGIN_OBJECT";
+			case TokenType::END_OBJECT:			return "END_OBJECT";
+			case TokenType::BEGIN_ARRAY:		return "BEGIN_ARRAY";
+			case TokenType::END_ARRAY:			return "END_ARRAY";
+			case TokenType::NAME_SEPARATOR:		return "NAME_SEPARATOR";
+			case TokenType::VALUE_SEPARATOR:	return "VALUE_SEPARATOR";
 			case TokenType::STRING:				return "STRING";
 			case TokenType::NUMBER:				return "NUMBER";
 			case TokenType::BOOLEAN:			return "BOOLEAN";

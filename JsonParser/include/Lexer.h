@@ -23,10 +23,16 @@ namespace Bunting {
 	
 	class Lexer {
 		public:
+			// Lexer() { }
 			Lexer(std::istream& input) : input(input) { nextChar(); }
 			
 			Token getNextToken();
 			bool hasNextToken();
+			
+			// std::istream& getInput();
+			// void setInput(std::istream& i);
+			
+			std::string tokenTypeStr(TokenType tt);
 			
 		private:
 			void skipWhitespace();
@@ -34,9 +40,7 @@ namespace Bunting {
 			Token parseNumber();
 			Token parseLiteral();
 			void nextChar();
-			char peekChar();
-			
-			std::string tokenTypeStr(TokenType tt);
+			// char peekChar();
 			
 			// format -> Lexer: str (line: 0, 'a')
 			std::string errorText(std::string str, bool skip = true);

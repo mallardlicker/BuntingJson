@@ -1,0 +1,99 @@
+{
+    "Assets": {
+        "SceneId": 0
+    },
+    "Components": null,
+    "EditorCamera": {
+        "Components": [
+            {
+                "Transform": {
+                    "Entity": 0,
+                    "LocalPosition": {
+                        "X": 0.0,
+                        "Y": 0.0,
+                        "Z": 0.0
+                    },
+                    "LocalRotation": {
+                        "X": 0.0,
+                        "Y": 0.0,
+                        "Z": 0.0
+                    },
+                    "LocalScale": {
+                        "X": 1.0,
+                        "Y": 1.0,
+                        "Z": 1.0
+                    },
+                    "Parent": 4294967295,
+                    "Position": {
+                        "X": 0.0,
+                        "Y": 0.0,
+                        "Z": 0.0
+                    },
+                    "Rotation": {
+                        "X": 0.0,
+                        "Y": 0.0,
+                        "Z": 0.0
+                    },
+                    "Scale": {
+                        "X": 1.0,
+                        "Y": 1.0,
+                        "Z": 1.0
+                    }
+                }
+            },
+            {
+                "Tag": {
+                    "Entity": 0,
+                    "Name": "New Entity"
+                }
+            },
+            {
+                "Camera": {
+                    "Aspect": 1.600000023841858,
+                    "ClearColor": {
+                        "X": 0.44999998807907104,
+                        "Y": 0.550000011920929,
+                        "Z": 0.6000000238418579
+                    },
+                    "Entity": 0,
+                    "Fov": 45.0,
+                    "Framebuffer": {
+                        "ColorAttachments": [
+                            {
+                                "ExternalFormat": 3,
+                                "Filepath": "",
+                                "InternalFormat": 3,
+                                "MagFilter": 1,
+                                "MinFilter": 1,
+                                "WrapS": 1,
+                                "WrapT": 1
+                            },
+                            {
+                                "ExternalFormat": 6,
+                                "Filepath": "",
+                                "InternalFormat": 5,
+                                "MagFilter": 0,
+                                "MinFilter": 0,
+                                "WrapS": 0,
+                                "WrapT": 0
+                            }
+                        ],
+                        "DepthStencilFormat": 0,
+                        "Height": 1600,
+                        "IncludeDepthStencil": false,
+                        "Width": 2560
+                    },
+                    "ProjectionFarPlane": 100.0,
+                    "ProjectionNearPlane": 0.5,
+                    "ProjectionSize": {
+                        "X": 6.0,
+                        "Y": 3.0
+                    },
+                    "Zoom": 1.0
+                }
+            }
+        ]
+    },
+    "Project": "/Users/mallardlicker/Desktop/TacoTime/TacoTime.taco-project",
+    "SceneHierarchyOrder": null
+}
