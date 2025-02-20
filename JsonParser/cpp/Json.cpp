@@ -58,7 +58,75 @@ namespace Bunting {
 	}
 	
 	// ===================================================================================
-	//	Json
+	//	Json (Object)
+	// ===================================================================================
+	
+	int Json::size() {
+		
+		int result = 0;
+		
+		std::visit([&result](const auto& val) {
+			using T = std::decay_t<decltype(val)>;
+			
+			if constexpr (std::is_same_v<T, std::vector<std::unique_ptr<JsonValue>>>) {
+				
+				result = val.size();
+			}
+			else if constexpr (std::is_same_v<T, std::map<std::string, std::unique_ptr<JsonValue>>>) {
+				
+				result = val.size();
+			}
+			
+		}, (*jsonObject).value);
+		
+		return result;
+	}
+	
+	bool Json::empty() {
+		
+		return size() == 0;
+	}
+	
+	bool Json::contains(const std::string& key) {
+		
+		bool result = false;
+		
+		std::visit([&result, key](const auto& val) {
+			using T = std::decay_t<decltype(val)>;
+			
+			if constexpr (std::is_same_v<T, std::map<std::string, std::unique_ptr<JsonValue>>>) {
+				
+				// use 'find' to poll map for key
+				if (auto search = val.find(key); search != val.end()) {
+					
+					result = true;
+				}
+			}
+			
+		}, (*jsonObject).value);
+		
+		return result;
+	}
+	
+	// auto& Json::operator[](std::string key) {
+		
+	// 	return std::visit([&](const auto& val) -> auto& {
+	// 		using T = std::decay_t<decltype(val)>;
+			
+	// 		if constexpr (std::is_same_v<T, std::map<std::string, std::unique_ptr<JsonValue>>>) {
+				
+	// 			// ! if type is not map or vector, static cast to value type
+	// 			return *(val.at(key));
+	// 		}
+			
+	// 		throw std::runtime_error(std::string("Json: invalid type for brace indexing with string '") + typeid(T).name() + "'");
+	// 		return 0;
+			
+	// 	}, (*jsonObject).value);
+	// }
+	
+	// ===================================================================================
+	//	Json (Parsing)
 	// ===================================================================================
 	
 	std::unique_ptr<JsonValue> Json::init() {
@@ -69,7 +137,7 @@ namespace Bunting {
 		
 		consume(TokenType::END_OF_FILE);
 		
-		return res;
+		return std::move(res);
 	}
 	
 	std::unique_ptr<JsonValue> Json::parseValue() {

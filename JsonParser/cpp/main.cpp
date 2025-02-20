@@ -19,7 +19,7 @@ int main() {
 		
 		std::ifstream input(file);
 		
-		if (true) {// test Lexer
+		if (false) {// test Lexer
 			// Lexer tester
 			Lexer lex(input);
 			
@@ -27,15 +27,7 @@ int main() {
 			int i = 0;
 			while (result.type != TokenType::END_OF_FILE) {
 				
-				// try {
-					
-					result = lex.getNextToken();
-				// }
-				// catch (const std::runtime_error& e) {
-					
-				// 	std::cout << "Encountered error: " << e.what() << std::endl;
-				// 	break;
-				// }
+				result = lex.getNextToken();
 				
 				std::cout << "(" << std::setw(2) << i++ << ") t: " << std::setw(15) << std::left << lex.tokenTypeStr(result.type) << " v: " << result.value << std::right;
 				
@@ -52,6 +44,12 @@ int main() {
 				Json j(input);
 				
 				std::cout << "Valid json:\n" << *(j.getData()) << std::endl;
+				
+				// std::cout << "\nSize: " << j.size() << std::endl;
+				
+				if (j.contains("key-l")) {
+					std::cout << "\nFound 'key' in object" << std::endl;
+				}
 			}
 			catch (const std::runtime_error& e) {
 				

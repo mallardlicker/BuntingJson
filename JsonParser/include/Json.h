@@ -31,18 +31,22 @@ namespace Bunting {
 		explicit JsonValue(JsonValueType v) : value(std::move(v)) { }
 		
 		friend std::ostream& operator<<(std::ostream& os, const JsonValue& j);
+		// friend const auto& get(const JsonValue& j);
 	};
 	
 	class Json : protected Lexer {
 		public:
-			// todo: constructor, destructor
+			// todo: {} constructor, destructor?
 			Json(std::istream& input) : Lexer(input) { jsonObject = init(); }
 			
-			// bool contains(std::string key); // determine whether current json object has a certain key
+			int size();
+			bool empty();
+			bool contains(const std::string& key);
 			
 			// Json& operator=(const Json& other);
-			// auto& operator[](std::string key); // returns Json objects or value types
-			// Json& operator[](int index); // will only return Json objects from arrays
+			
+			// auto& operator[](std::string key);
+			// auto& operator[](int index);
 			
 			std::unique_ptr<JsonValue>& getData() { return jsonObject; }
 			
